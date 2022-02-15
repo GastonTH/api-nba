@@ -2,6 +2,14 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-contacto_date:
+all_teams:
   path: equipos
   controller: App\Controller\EquiposController::getAllTeams
+
+team_by_name:
+  path: equipos/{nombre}
+  controller: App\Controller\EquiposController::getTeamByName
+
+all_players_by_team:
+  path: equipo/jugadores
+  controller: App\Controller\EquiposController::getAllPlayersByTeams

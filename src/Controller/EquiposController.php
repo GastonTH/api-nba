@@ -14,4 +14,24 @@ class EquiposController extends AbstractController
             ->findAllTeams();
         return new JsonResponse($teams);
     }
+
+    public function getTeamByName(Request $request){
+
+        $team = $request ->get('nombre');
+        $teamObjs = $this->getDoctrine()
+            ->getManager()
+            ->getRepository(Equipos::class)
+            ->findOneBy(['nombre' => $team]);
+
+        $teamRes = $this->getDoctrine()->getRepository(Equipos::class)
+            ->findTeamByName($teamObjs);
+        return new JsonResponse($teamRes);
+    }
+
+    public function getAllPlayersByTeams(){
+        $teamRes = $this->getDoctrine()->getRepository(Equipos::class)
+            ->findAllPlayerByTeam();
+        return new JsonResponse($teamRes);
+    }
+
 }
