@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+contacto_date:
+  path: equipos
+  controller: App\Controller\EquiposController::getAllTeams
