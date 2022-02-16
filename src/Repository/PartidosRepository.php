@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repository;
-use \Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityRepository;
 
 class PartidosRepository extends EntityRepository
 {

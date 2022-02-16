@@ -28,28 +28,29 @@ class EquiposRepository extends EntityRepository
 
     public function findAllPlayerByTeam(){
 
+        $allInfoArray = array();
+
         $arrayTeams = $this->findAllTeams();
 
         foreach ($arrayTeams as $iterate){
 
-            $query = $this->getEntityManager()->createQuery("SELECT j.nombre, j.procedencia, j.posicion FROM App:Jugadores j WHERE j.nombre_equipo = :nombreIn");
+            $query = $this->getEntityManager()->createQuery("SELECT j.nombre, j.procedencia, j.posicion FROM App:Jugadores j WHERE j.nombreEquipo = :nombreIn");
             $query->setParameter('nombreIn', $iterate['nombre']);
             $res = $query->getArrayResult();
-            dump(
-                $res
-            ).die();
-
+            $allInfoArray[$iterate['nombre']] = $res;
         }
 
-        $query = $this->getEntityManager()->createQuery("SELECT e.nombre, e.ciudad, e.conferencia, e.division FROM App:Equipos e WHERE e.nombre = :nombreIn");
-
-        return $query->getArrayResult();
+        return $allInfoArray;
 
     }
 
     public function findPlayersByTeam(Equipos $nombreIn){
 
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT j.codigo, j.nombre, j.procedencia, j.altura, j.peso, j.posicion FROM App:Jugadores j WHERE j.nombreEquipo = :nombreIn");
+        $query->setParameter('nombreIn', $nombreIn->getNombre());
 
+        return $query->getArrayResult();
 
     }
 

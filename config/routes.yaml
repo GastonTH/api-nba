@@ -13,3 +13,20 @@ team_by_name:
 all_players_by_team:
   path: equipo/jugadores
   controller: App\Controller\EquiposController::getAllPlayersByTeams
+
+players_by_team:
+  path: equipo/jugadores/{nombre}
+  controller: App\Controller\EquiposController::getPlayersByTeam
+
+players:
+  path: jugadores
+  controller: App\Controller\JugadoresController::getPlayers
+
+player_by_name:
+  path: jugadores/{nombre}
+  controller: App\Controller\JugadoresController::getPlayerByName
+
+player_by_name_kg_cm:
+  path: jugador/fisico/{nombre}
+  controller: App\Controller\JugadoresController::getPlayerByNameKgCm
+
