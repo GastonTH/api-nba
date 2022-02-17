@@ -22,7 +22,9 @@ class EquiposRepository extends EntityRepository
         $query = $this->getEntityManager()->createQuery("SELECT e.nombre, e.ciudad, e.conferencia, e.division FROM App:Equipos e WHERE e.nombre = :nombreIn");
         $query->setParameter('nombreIn', $nombreIn->getNombre());
 
-        return $query->getArrayResult();
+        $result = $query->getArrayResult();
+
+        return $result[0];
 
     }
 

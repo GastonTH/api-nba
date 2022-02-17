@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Estadisticas
  *
  * @ORM\Table(name="estadisticas", indexes={@ORM\Index(name="jugador", columns={"jugador"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\EstadisticasRepository")
  */
 class Estadisticas
 {

@@ -30,3 +30,11 @@ player_by_name_kg_cm:
   path: jugador/fisico/{nombre}
   controller: App\Controller\JugadoresController::getPlayerByNameKgCm
 
+estadistics_by_name:
+  path: estadisticas/jugador/{nombre}
+  controller: App\Controller\EstadisticasController::getStadisticsPlayerByName
+
+estadistics_avg_by_name:
+  path: estadisticas/jugador/{nombre}/avg
+  controller: App\Controller\EstadisticasController::getStadisticsAvgByPlayerByName
+
