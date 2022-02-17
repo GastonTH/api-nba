@@ -41,3 +41,15 @@ stadistics_avg_by_name:
 local_game_results_by_name:
   path: partidos/resultados/local/{nombre}
   controller: App\Controller\PartidosController::getResultsByLocalTeam
+
+visitor_game_results_by_name:
+  path: partidos/resultados/visitante/{nombre}
+  controller: App\Controller\PartidosController::getResultsByVisitorTeam
+
+media_local_game_results_by_name:
+  path: partidos/resultados/media/local/{nombre}
+  controller: App\Controller\PartidosController::getMediaResultsByLocalTeam
+
+media_visitor_game_results_by_name:
+  path: partidos/resultados/media/visitante/{nombre}
+  controller: App\Controller\PartidosController::getMediaResultsByVisitorTeam
