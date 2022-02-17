@@ -44,6 +44,7 @@ class EquiposController extends AbstractController
 
         $teamRes = $this->getDoctrine()->getRepository(Equipos::class)
             ->findPlayersByTeam($teamObjs);
+
         return new JsonResponse($teamRes);
     }
 

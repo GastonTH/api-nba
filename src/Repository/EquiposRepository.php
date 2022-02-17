@@ -52,7 +52,9 @@ class EquiposRepository extends EntityRepository
             ->createQuery("SELECT j.codigo, j.nombre, j.procedencia, j.altura, j.peso, j.posicion FROM App:Jugadores j WHERE j.nombreEquipo = :nombreIn");
         $query->setParameter('nombreIn', $nombreIn->getNombre());
 
-        return $query->getArrayResult();
+        $res[$nombreIn->getNombre()] = $query->getArrayResult();
+
+        return $res;
 
     }
 

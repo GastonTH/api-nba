@@ -42,17 +42,21 @@ class JugadoresRepository extends EntityRepository
             ->createQuery("SELECT j.nombre, j.altura, j.peso FROM App:Jugadores j WHERE j.nombre = :playerName");
         $query->setParameter('playerName', $playerIn->getNombre());
 
-        $response =  $query->getArrayResult();
+        $res =  $query->getArrayResult();
 
         // ----
 
-        $peso = $response[0]["peso"];
-        $response[0]["peso"] = floatval($peso) * 0.453592;
+        $peso = $res[0]["peso"];
+        $res[0]["peso"] = floatval($peso) * 0.453592;
 
-        $altura = explode("-",$response[0]["altura"]);
-        $response[0]["altura"] = (floatval($altura[0]*12)*2.54) + (($altura[1]*2.54));
+        $altura = explode("-",$res[0]["altura"]);
+        $res[0]["altura"] = (floatval($altura[0]*12)*2.54) + (($altura[1]*2.54));
 
-        return $response[0];
+        $response[$res[0]["nombre"]] = array(
+            "altura" => $res[0]["altura"],
+            "peso" => $res[0]["peso"]
+        );
+
+        return $response;
     }
-
 }
