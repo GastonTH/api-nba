@@ -33,15 +33,26 @@ class JugadoresRepository extends EntityRepository
 
     public function findPlayerByNameKgCm(Jugadores $playerIn){
 
-        $result = $this->findPlayerByName($playerIn);
+        if (str_contains($playerIn->getNombre(), '%20')){
+            $str = str_replace("%20", " ", $playerIn->getNombre());
+            $playerIn->setNombre($str);
+        }
 
-        $peso = $result["peso"];
-        $result["peso"] = floatval($peso) * 0.453592;
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT j.nombre, j.altura, j.peso FROM App:Jugadores j WHERE j.nombre = :playerName");
+        $query->setParameter('playerName', $playerIn->getNombre());
 
-        $altura = explode("-",$result["altura"]);
-        $result["altura"] = (floatval($altura[0]*12)*2.54) + (($altura[1]*2.54));
+        $response =  $query->getArrayResult();
 
-        return $result[0];
+        // ----
+
+        $peso = $response[0]["peso"];
+        $response[0]["peso"] = floatval($peso) * 0.453592;
+
+        $altura = explode("-",$response[0]["altura"]);
+        $response[0]["altura"] = (floatval($altura[0]*12)*2.54) + (($altura[1]*2.54));
+
+        return $response[0];
     }
 
 }
