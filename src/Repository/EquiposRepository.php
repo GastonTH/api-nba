@@ -10,7 +10,8 @@ class EquiposRepository extends EntityRepository
 
     public function findAllTeams(){
 
-        $dql = "SELECT e.nombre, e.ciudad, e.conferencia, e.division FROM App:Equipos e";
+        // instancio la 'query' para que devuelva todos los equipos
+        $dql = "SELECT e FROM App:Equipos e";
         $query = $this->getEntityManager()->createQuery($dql);
 
         return $query->getArrayResult();
@@ -19,6 +20,7 @@ class EquiposRepository extends EntityRepository
 
     public function findTeamByName(Equipos $nombreIn){
 
+        // instancio la 'query' que devuelve
         $query = $this->getEntityManager()->createQuery("SELECT e.nombre, e.ciudad, e.conferencia, e.division FROM App:Equipos e WHERE e.nombre = :nombreIn");
         $query->setParameter('nombreIn', $nombreIn->getNombre());
 
@@ -36,7 +38,7 @@ class EquiposRepository extends EntityRepository
 
         foreach ($arrayTeams as $iterate){
 
-            $query = $this->getEntityManager()->createQuery("SELECT j.nombre, j.procedencia, j.posicion FROM App:Jugadores j WHERE j.nombreEquipo = :nombreIn");
+            $query = $this->getEntityManager()->createQuery("SELECT j FROM App:Jugadores j WHERE j.nombreEquipo = :nombreIn");
             $query->setParameter('nombreIn', $iterate['nombre']);
             $res = $query->getArrayResult();
             $allInfoArray[$iterate['nombre']] = $res;

@@ -37,7 +37,7 @@ class PartidosRepository extends EntityRepository
 
         foreach ($res[$team->getNombre()] as $iter){
 
-            $media += $iter["puntosLocal"];
+            $media += $iter["puntosVisitante"];
         }
 
         $media /= count($res[$team->getNombre()]);
@@ -56,7 +56,7 @@ class PartidosRepository extends EntityRepository
 
         foreach ($res[$team->getNombre()] as $iter){
 
-            $media += $iter["puntosVisitante"];
+            $media += $iter["puntosLocal"];
         }
 
         $media /= count($res[$team->getNombre()]);
